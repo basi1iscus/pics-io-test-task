@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  node_server:
+    build:
+      target: node_server
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      MONGO_URI: mongodb://mongo:27017
+      DATABASE_NAME: picsiotesttask
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_PASSWORD: admin
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    restart: always
+
+  
